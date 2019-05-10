@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/usersItem"
+        android:title="@string/tab_users"
+        android:icon="@drawable/ic_users"
+        app:showAsAction="withText"
+        android:checked="true"
+        />
+    <item
+        android:id="@+id/albumItem"
+        android:title="@string/tab_album"
+        android:icon="@drawable/ic_album"
+        app:showAsAction="withText"
+        android:checked="true"
+        />
+
+</menu>
