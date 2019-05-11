@@ -9,7 +9,7 @@ public class User {
     private String empresa;
     private String correo;
     private String telefono;
-    private String foto;
+    private int foto;
 
     public User() {   }
 
@@ -77,11 +77,11 @@ public class User {
         this.telefono = telefono;
     }
 
-    public String getFoto() {
+    public int getFoto() {
         return foto;
     }
 
-    public void setFoto(String foto) {
+    public void setFoto(int foto) {
         this.foto = foto;
     }
 }

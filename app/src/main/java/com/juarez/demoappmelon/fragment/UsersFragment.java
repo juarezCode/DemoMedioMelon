@@ -111,16 +111,35 @@ public class UsersFragment extends Fragment {
                             //Iteramos son el JSONArray
                             for (int i=0; i <response.length(); i++){
                                 try {
-                                    JSONObject p = (JSONObject) response.get(i);
-                                    if (p != null){
-                                        //Armamos un objeto Photo con el Title y la URL de cada JSONObject
+                                    JSONObject objectUser = (JSONObject) response.get(i);
+                                    JSONObject objectAddress = objectUser.getJSONObject("address");
+                                    JSONObject objectCompany = objectUser.getJSONObject("company");
+
+                                    if (objectUser != null){
+                                        //Armamos un objeto User con los atributos de cada JSONObject
                                         User user = new User();
-                                        if (p.has("name"))
-                                            user.setNombre(p.getString("name"));
-                                        if (p.has("email"))
-                                            user.setCorreo(p.getString("email"));
+
+                                        if (objectUser.has("name"))
+                                            user.setNombre(objectUser.getString("name"));
+                                        if (objectUser.has("username"))
+                                            user.setNombreUsuario(objectUser.getString("username"));
+                                            user.setSitioWeb(objectUser.getString("website"));
+                                            user.setCorreo(objectUser.getString("email"));
+                                            user.setTelefono(objectUser.getString("phone"));
+
+                                            user.setDireccion(objectAddress.getString("street"));
+                                            user.setEmpresa(objectCompany.getString("name"));
+
+
                                         //if (p.has("url"))
                                         //    photo.setImageUrl(p.getString("url"));
+
+
+                                        int[] elementos={R.drawable.girl_1,R.drawable.girl_2,R.drawable.man_1, R.drawable.man_2};
+                                        int numRandon = (int) Math.round(Math.random() * 3 ) ;
+                                        int num = elementos[numRandon];
+
+                                            user.setFoto(num);
                                         //Agreagamos el objeto Photo al Dataset
                                         myDataSet.add(user);
                                     }
@@ -148,5 +167,7 @@ public class UsersFragment extends Fragment {
         //Agregamos la petición de tipo JSON a la cola
         queue.add(aRequest);
     }
+
+
 
 }
