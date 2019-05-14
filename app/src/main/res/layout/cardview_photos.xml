@@ -15,11 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop" />
-        <TextView
-            android:id="@+id/txtAlbumId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="album: 1\nfoto: 12"/>
 
 
 </android.support.v7.widget.CardView>

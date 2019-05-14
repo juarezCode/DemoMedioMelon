@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon.Adapters;
+package com.juarez.demoappmelon.Controlador.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.juarez.demoappmelon.DetailUserActivity;
+import com.juarez.demoappmelon.Controlador.Activity.DetailUserActivity;
 import com.juarez.demoappmelon.R;
-import com.juarez.demoappmelon.model.User;
+import com.juarez.demoappmelon.modelo.User;
 
 import java.util.ArrayList;
 

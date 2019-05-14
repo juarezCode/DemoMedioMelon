@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingRight="15dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_marginLeft="32dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="1"
+                android:text="@string/cardViewAlbumes_id"
                 android:textColor="@color/black"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintStart_toStartOf="parent"
@@ -35,15 +36,13 @@
 
             <TextView
                 android:id="@+id/textViewNombreAlbum"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="Nombre del Album"
+                android:text="@string/cardViewAlbumes_name"
                 android:textColor="@color/black"
                 cardview:layout_constraintBottom_toBottomOf="parent"
                 cardview:layout_constraintEnd_toEndOf="parent"

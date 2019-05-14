@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon.Adapters;
+package com.juarez.demoappmelon.Controlador.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,11 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.juarez.demoappmelon.R;
-import com.juarez.demoappmelon.model.Photo;
+import com.juarez.demoappmelon.modelo.Photo;
 
 import java.util.ArrayList;
 
@@ -23,12 +22,11 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
         // each data item is just a string in this case
 
         ImageView photo;
-        TextView id;
 
         ViewHolder(View v) {
             super(v);
             photo = (ImageView) v.findViewById(R.id.imgPhoto);
-            id = (TextView) v.findViewById((R.id.txtAlbumId));
+
         }
     }
 
@@ -53,7 +51,6 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(final PhotoAdapter.ViewHolder holder, final int position) {
         // - obtiene los elementos del dataset en una posicion definida
-        holder.id.setText("album: "+mDataset.get(position).getAlbumId()+ "\nfoto: "+ mDataset.get(position).getIdPhoto());
         Glide.with(mContext)
                 .load(mDataset.get(position).getImageUrl())
                 .placeholder(R.drawable.ic_download)

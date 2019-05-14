@@ -1,8 +1,32 @@
 <resources>
     <string name="app_name">Demo App</string>
+
+    <!-- TODO: Layout bottomnavigationview -->
     <string name="tab_users">Usuarios</string>
     <string name="tab_album">Àlbumes</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Layout acitvity_detail_user -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="UserDetail_title2">Datos de contacto</string>
+    <string name="UserDetail_title1">Datos Generales</string>
+    <string name="UserDetail_nombre">Nombre</string>
+    <string name="UserDetail_username">Nombre de Usuario</string>
+    <string name="UserDetail_website">Sitio Web</string>
+    <string name="UserDetail_companyname">Nombre Empresa</string>
+    <string name="UserDetail_email">Correo Electronico</string>
+    <string name="UserDetail_phone">Telefono</string>
+    <string name="UserDetail_address">Domicilio</string>
+
+    <!-- TODO: Layout cardview_users -->
+    <string name="cardviewUsers_name">Nombre</string>
+    <string name="cardviewUsers_email">Correo Electronico</string>
+
+    <!-- TODO: Layout activity_photo -->
+    <string name="activityPhoto_albumName">Nombre Album</string>
+
+    <!-- TODO: Layout cardview_albumes -->
+    <string name="cardViewAlbumes_id">1</string>
+    <string name="cardViewAlbumes_name">Nombre deL Album</string>
+
+
 </resources>

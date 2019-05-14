@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon;
+package com.juarez.demoappmelon.Controlador.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.juarez.demoappmelon.R;
 
 public class DetailUserActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
@@ -29,7 +31,7 @@ public class DetailUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
 
-        showToolbar("Detalles de Usuario", true);
+        showToolbar("Usuario", true);
 
         DUserNombre        = (TextView) findViewById(R.id.txtUserDetailNombre);
         DUserNombreUsuario = (TextView) findViewById(R.id.txtUserDetailNombreUsuario);
@@ -89,9 +91,11 @@ public class DetailUserActivity extends AppCompatActivity {
     }
     //toolbar
     public void showToolbar(String tittle, boolean upButton){
+        TextView toolbarTitle = findViewById(R.id.toolbartitle);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(tittle);
+        toolbarTitle.setText(tittle);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
 
     }

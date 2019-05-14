@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon.model;
+package com.juarez.demoappmelon.modelo;
 
 public class Album {
     private String UserId;

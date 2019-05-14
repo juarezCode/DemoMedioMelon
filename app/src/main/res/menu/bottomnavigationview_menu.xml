@@ -6,7 +6,7 @@
         android:id="@+id/usersItem"
         android:title="@string/tab_users"
         android:icon="@drawable/ic_users"
-        app:showAsAction="withText"
+        app:showAsAction="ifRoom"
         android:checked="true"
         />
     <item

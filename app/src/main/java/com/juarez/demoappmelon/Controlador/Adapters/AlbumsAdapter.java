@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon.Adapters;
+package com.juarez.demoappmelon.Controlador.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,9 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.juarez.demoappmelon.PhotoActivity;
+import com.juarez.demoappmelon.Controlador.Activity.PhotoActivity;
 import com.juarez.demoappmelon.R;
-import com.juarez.demoappmelon.model.Album;
+import com.juarez.demoappmelon.modelo.Album;
 
 import java.util.ArrayList;
 

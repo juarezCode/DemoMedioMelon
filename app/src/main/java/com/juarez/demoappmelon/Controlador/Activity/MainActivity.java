@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon;
+package com.juarez.demoappmelon.Controlador.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
-import com.juarez.demoappmelon.fragment.AlbumesFragment;
-import com.juarez.demoappmelon.fragment.UsersFragment;
+import com.juarez.demoappmelon.R;
+import com.juarez.demoappmelon.Controlador.fragment.AlbumesFragment;
+import com.juarez.demoappmelon.Controlador.fragment.UsersFragment;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
     private ProgressBar progressBarPhoto;
+    private TextView toolbarTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Renderizando la toolbar
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbarTitle = (TextView) findViewById(R.id.toolbartitle);
+
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Demo App");
+        toolbarTitle.setText("Demo App");
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         //metodo que secciona el fragment inicial desde otra activity (DetailUserActivity)
         seleccionFragmentInicial();
@@ -47,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
                 switch (id){
                     case R.id.usersItem:
                         fragment = new UsersFragment();
-                        getSupportActionBar().setTitle("Usuarios");
+                        //toolbarTitle.setText("Usuarios");
                         break;
                     case R.id.albumItem:
                         fragment = new AlbumesFragment();
-                        getSupportActionBar().setTitle("Albumes");
+                        //toolbarTitle.setText("Albumes");
                         break;
                 }
                 final FragmentTransaction transaction = fragmentManager.beginTransaction();

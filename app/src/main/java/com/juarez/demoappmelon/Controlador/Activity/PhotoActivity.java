@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon;
+package com.juarez.demoappmelon.Controlador.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,8 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.juarez.demoappmelon.Adapters.PhotoAdapter;
-import com.juarez.demoappmelon.model.Photo;
+import com.juarez.demoappmelon.Controlador.Adapters.PhotoAdapter;
+import com.juarez.demoappmelon.R;
+import com.juarez.demoappmelon.modelo.Photo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,11 +40,13 @@ public class PhotoActivity extends AppCompatActivity {
     private ProgressBar progressBarPhoto;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        showToolbar("Album", true);
+        showToolbar("Fotos", true);
+
 
         tituloAlbum = (TextView) findViewById(R.id.txtTituloAlbumPhoto);
         progressBarPhoto = (ProgressBar) findViewById(R.id.progressBarPhoto);
@@ -71,6 +74,7 @@ public class PhotoActivity extends AppCompatActivity {
 
         //menu botttomnavigationview
         bottomNavigation = (BottomNavigationView)findViewById(R.id.bottomnavigationview);
+        bottomNavigation.setSelectedItemId(R.id.albumItem);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -169,9 +173,11 @@ public class PhotoActivity extends AppCompatActivity {
 
     //Toolbar
     public void showToolbar(String tittle, boolean upButton){
+        TextView toolbarTitle = findViewById(R.id.toolbartitle);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(tittle);
+        toolbarTitle.setText(tittle);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
 
     }

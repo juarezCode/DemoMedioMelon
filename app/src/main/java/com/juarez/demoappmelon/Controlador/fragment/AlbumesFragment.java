@@ -1,4 +1,4 @@
-package com.juarez.demoappmelon.fragment;
+package com.juarez.demoappmelon.Controlador.fragment;
 
 
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.juarez.demoappmelon.Adapters.UsersAdapter;
+import com.juarez.demoappmelon.Controlador.Adapters.AlbumsAdapter;
 import com.juarez.demoappmelon.R;
-import com.juarez.demoappmelon.model.User;
+import com.juarez.demoappmelon.modelo.Album;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,16 +29,16 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UsersFragment extends Fragment {
-    private static final String TAG = "UsersFragment" ;
-    private RecyclerView recyclerUsers;
-    private UsersAdapter mAdapter;
-    private ArrayList<User> myDataSet;
-    private ProgressBar progressBar;
-    private  View view;
+public class AlbumesFragment extends Fragment {
+    private static final String TAG = "AlbumesFragment" ;
+    private RecyclerView recyclerAlbums;
+    private AlbumsAdapter mAdapter;
+    private ArrayList<Album> myDataSet;
+    private ProgressBar progressBarAlbum;
+    private View view;
 
 
-    public UsersFragment() {
+    public AlbumesFragment() {
         // Required empty public constructor
     }
 
@@ -47,57 +47,51 @@ public class UsersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.fragment_users, container, false);
+        view = inflater.inflate(R.layout.fragment_albumes, container, false);
 
-        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
-
-        progressBar.setVisibility(view.VISIBLE);
+        progressBarAlbum = (ProgressBar) view.findViewById(R.id.progressBarAlbum);
+        progressBarAlbum.setVisibility(view.VISIBLE);
 
         //recyclerview
-        recyclerUsers = (RecyclerView) view.findViewById(R.id.recyclerusers);
-        recyclerUsers.setHasFixedSize(true);
+        recyclerAlbums = (RecyclerView) view.findViewById(R.id.recycleralbumes);
+        recyclerAlbums.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recyclerUsers.setLayoutManager(linearLayoutManager);
-        //dummyData();
-        loadPhotosFromWeb();
-        //UsersAdapter mAdapter  = new UsersAdapter(this.getContext().getApplicationContext(), myDataSet);
-
+        recyclerAlbums.setLayoutManager(linearLayoutManager);
+        loadAlbumFromWeb();
 
         return  view;
 
-
     }
-    //metodo para actualizar el Layout
+    ////metodo para actualizar el Layout
     private void refreshDataSet() {
-        progressBar.setVisibility(view.GONE);
-        if(recyclerUsers == null){
+        progressBarAlbum.setVisibility(view.GONE);
+        if(recyclerAlbums == null){
             return;
         }
         if(mAdapter == null){
-            mAdapter = new UsersAdapter(this.getContext().getApplicationContext(), myDataSet);
-            recyclerUsers.setAdapter(mAdapter);
+            mAdapter = new AlbumsAdapter(this.getContext().getApplicationContext(), myDataSet);
+            recyclerAlbums.setAdapter(mAdapter);
         }else{
             mAdapter.notifyDataSetChanged();
         }
     }
 
     //metodo para traer los datos de la web
-    private void loadPhotosFromWeb() {
+    private void loadAlbumFromWeb() {
 
         //Hacemos uso de Volley para consumir el End-point
-        myDataSet = new ArrayList<User>();
+        myDataSet = new ArrayList<Album>();
 
         //Definimos un String con la URL del End-point
-        String url = "https://jsonplaceholder.typicode.com/users";
+        String url = "https://jsonplaceholder.typicode.com/albums";
 
         //Instanciamos un objeto RequestQueue el cual se encarga de gestionar la cola de peticiones
         RequestQueue queue = Volley.newRequestQueue(this.getContext().getApplicationContext());
 
-        //Armamos una peticion de tipo JSONArray por que es un JsonArray lo que obtendremos como resultado
+        //Armamos una peticion de tipo JSONArray
         JsonArrayRequest aRequest = new JsonArrayRequest(url,
                 new Response.Listener<JSONArray>() {
                     @Override
@@ -108,33 +102,18 @@ public class UsersFragment extends Fragment {
                             //Iteramos son el JSONArray
                             for (int i=0; i <response.length(); i++){
                                 try {
-                                    JSONObject objectUser = (JSONObject) response.get(i);
-                                    JSONObject objectAddress = objectUser.getJSONObject("address");
-                                    JSONObject objectCompany = objectUser.getJSONObject("company");
+                                    JSONObject objectAlbum = (JSONObject) response.get(i);
 
-                                    if (objectUser != null){
+                                    if (objectAlbum != null){
                                         //Armamos un objeto con los atributos de cada JSONObject
-                                        User user = new User();
+                                        Album album= new Album();
 
-                                        if (objectUser.has("name"))
-                                            user.setNombre(objectUser.getString("name"));
-                                        if (objectUser.has("username"))
-                                            user.setNombreUsuario(objectUser.getString("username"));
-                                            user.setSitioWeb(objectUser.getString("website"));
-                                            user.setCorreo(objectUser.getString("email"));
-                                            user.setTelefono(objectUser.getString("phone"));
+                                        if (objectAlbum.has("id"))
+                                            album.setId(objectAlbum.getString("id"));
+                                            album.setTitulo(objectAlbum.getString("title"));
 
-                                            user.setDireccion(objectAddress.getString("street"));
-                                            user.setEmpresa(objectCompany.getString("name"));
-
-                                        //metodo random para asignar imagenes a los usuarios
-                                        int[] elementos={R.drawable.girl_1,R.drawable.girl_2,R.drawable.man_1, R.drawable.man_2};
-                                        int numRandon = (int) Math.round(Math.random() * 3 ) ;
-                                        int num = elementos[numRandon];
-
-                                            user.setFoto(num);
                                         //Agreagamos el objeto Photo al Dataset
-                                        myDataSet.add(user);
+                                        myDataSet.add(album);
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -160,7 +139,5 @@ public class UsersFragment extends Fragment {
         //Agregamos la petición de tipo JSON a la cola
         queue.add(aRequest);
     }
-
-
 
 }
