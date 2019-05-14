@@ -1,5 +1,6 @@
 package com.juarez.demoappmelon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -28,6 +29,8 @@ public class DetailUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user);
 
+        showToolbar("Detalles de Usuario", true);
+
         DUserNombre        = (TextView) findViewById(R.id.txtUserDetailNombre);
         DUserNombreUsuario = (TextView) findViewById(R.id.txtUserDetailNombreUsuario);
         DUserSitioWeb      = (TextView) findViewById(R.id.txtUserDetailSitioWeb);
@@ -36,9 +39,6 @@ public class DetailUserActivity extends AppCompatActivity {
         DUserDireccion     = (TextView) findViewById(R.id.txtUserDetailDomicilio);
         DUserEmpresa     = (TextView) findViewById(R.id.txtUserDetailNombreEmpresa);
         DUserFoto     = (ImageView) findViewById(R.id.imageViewDetailUsers);
-
-
-        showToolbar("Detalles de Usuario", true);
 
         //recibir  datos
         String DNombre = getIntent().getStringExtra("nombre");
@@ -51,7 +51,7 @@ public class DetailUserActivity extends AppCompatActivity {
         int DFoto  = getIntent().getIntExtra("foto",R.drawable.man_1);
 
 
-        //Mostrar valores a la pantalla
+        //Setear y Mostrar valores a la pantalla
         DUserNombre.setText(DNombre);
         DUserNombreUsuario.setText(DNombreUsuario);
         DUserSitioWeb.setText(DSitioWeb);
@@ -71,24 +71,23 @@ public class DetailUserActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 int id = item.getItemId();
-
                 switch (id) {
                     case R.id.usersItem:
                         finish();
-
                         break;
                     case R.id.albumItem:
+                        Intent IntentAlbum = new Intent(DetailUserActivity.this, MainActivity.class);
+                        IntentAlbum.putExtra("valorFragment",  2);
+                        startActivity(IntentAlbum);
                         finish();
                         break;
-
-
                 }
-
                 return true;
             }
         });
 
     }
+    //toolbar
     public void showToolbar(String tittle, boolean upButton){
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

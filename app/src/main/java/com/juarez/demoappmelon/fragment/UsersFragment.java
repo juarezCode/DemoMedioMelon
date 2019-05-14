@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,6 +34,8 @@ public class UsersFragment extends Fragment {
     private RecyclerView recyclerUsers;
     private UsersAdapter mAdapter;
     private ArrayList<User> myDataSet;
+    private ProgressBar progressBar;
+    private  View view;
 
 
     public UsersFragment() {
@@ -46,7 +49,12 @@ public class UsersFragment extends Fragment {
 
 
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_users, container, false);
+        view =  inflater.inflate(R.layout.fragment_users, container, false);
+
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        progressBar.setVisibility(view.VISIBLE);
+
         //recyclerview
         recyclerUsers = (RecyclerView) view.findViewById(R.id.recyclerusers);
         recyclerUsers.setHasFixedSize(true);
@@ -63,22 +71,9 @@ public class UsersFragment extends Fragment {
 
 
     }
-    private  void dummyData(){
-
-        myDataSet = new ArrayList<User>();
-        int i = 0;
-        while(i < 50){
-            User user = new User();
-            user.setNombre(" Roberto" +  String.valueOf(i));
-            user.setCorreo(" juarez@gmail.com" +  String.valueOf(i));
-            myDataSet.add(user);
-            i++;
-
-        }
-        refreshDataSet();
-    }
-
+    //metodo para actualizar el Layout
     private void refreshDataSet() {
+        progressBar.setVisibility(view.GONE);
         if(recyclerUsers == null){
             return;
         }
@@ -89,10 +84,12 @@ public class UsersFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         }
     }
+
+    //metodo para traer los datos de la web
     private void loadPhotosFromWeb() {
+
         //Hacemos uso de Volley para consumir el End-point
         myDataSet = new ArrayList<User>();
-        //myDataset = new ArrayList<User>();
 
         //Definimos un String con la URL del End-point
         String url = "https://jsonplaceholder.typicode.com/users";
@@ -116,7 +113,7 @@ public class UsersFragment extends Fragment {
                                     JSONObject objectCompany = objectUser.getJSONObject("company");
 
                                     if (objectUser != null){
-                                        //Armamos un objeto User con los atributos de cada JSONObject
+                                        //Armamos un objeto con los atributos de cada JSONObject
                                         User user = new User();
 
                                         if (objectUser.has("name"))
@@ -130,11 +127,7 @@ public class UsersFragment extends Fragment {
                                             user.setDireccion(objectAddress.getString("street"));
                                             user.setEmpresa(objectCompany.getString("name"));
 
-
-                                        //if (p.has("url"))
-                                        //    photo.setImageUrl(p.getString("url"));
-
-
+                                        //metodo random para asignar imagenes a los usuarios
                                         int[] elementos={R.drawable.girl_1,R.drawable.girl_2,R.drawable.man_1, R.drawable.man_2};
                                         int numRandon = (int) Math.round(Math.random() * 3 ) ;
                                         int num = elementos[numRandon];
@@ -149,7 +142,7 @@ public class UsersFragment extends Fragment {
 
                                 } finally {
                                     //Finalmente si hemos cargado datos en el Dataset
-                                    // entonces refrescamos
+                                    // refrescamos
                                     if (myDataSet.size() > 0)
                                         refreshDataSet();
                                 }

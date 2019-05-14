@@ -20,9 +20,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
     private Context mContext;
     private ArrayList<User> mDataset;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    // viewholder accede a todas las vistas
     static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView txtnombre;
@@ -36,31 +34,27 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+    // constructor
     public UsersAdapter(Context context, ArrayList<User> myDataset) {
         mDataset = myDataset;
         mContext = context;
     }
 
-    // Create new views (invoked by the layout manager)
+    // Crea nuevas vistas (invocadas pot el layout manager)
     @Override
     public UsersAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
-        // create a new view
+        // crear una nueva vista
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cardview_users, parent, false);
-        // set the view's size, margins, paddings and layout parameters
 
         return new ViewHolder(v);
     }
 
-
-
-    // Replace the contents of a view (invoked by the layout manager)
+    // Reemplazar el contenido del layout manager
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+        // - obtiene los elementos del dataset en una posicion definida
         holder.txtnombre.setText(mDataset.get(position).getNombre());
         holder.txtcorreo.setText(mDataset.get(position).getCorreo());
         holder.foto.setImageResource(mDataset.get(position).getFoto());
@@ -70,9 +64,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
             @Override
             public void onClick(View v) {
 
-                //Bundle nombre = new Bundle();
-                //User user = new User();
-
+                //envio de datos
                 Intent intent = new Intent(mContext, DetailUserActivity.class);
                 intent.putExtra("nombre",  mDataset.get(position).getNombre());
                 intent.putExtra("nombreUsuario",  mDataset.get(position).getNombreUsuario());
@@ -83,21 +75,13 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder>{
                 intent.putExtra("empresa",  mDataset.get(position).getEmpresa());
                 intent.putExtra("foto", mDataset.get(position).getFoto() );
 
-
                 mContext.startActivity(intent);
-
-
-
             }
         });
 
-        //Glide.with(mContext).load(mDataset.get(position).getImageUrl()).into(holder.mImgtView);
-        //Glide.with(mContext).load("http://goo.gl/gEgYUd").into(holder.mImgtView);
     }
 
-
-
-    // Return the size of your dataset (invoked by the layout manager)
+    // Devuelve el tamaño de tu dataset
     @Override
     public int getItemCount() {
         return mDataset.size();
