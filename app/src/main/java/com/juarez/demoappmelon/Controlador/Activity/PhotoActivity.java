@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ public class PhotoActivity extends AppCompatActivity {
     private ArrayList<Photo> myDataSet;
     private String AlbumId;
     private ProgressBar progressBarPhoto;
+    private ImageView arrowBack;
 
 
 
@@ -45,9 +47,19 @@ public class PhotoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo);
-        showToolbar("Fotos", true);
+        showToolbar("Fotos", false);
 
+        //flecha en toolbar
+        arrowBack = (ImageView) findViewById(R.id.arrow);
+        arrowBack.setVisibility(View.VISIBLE);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                finish();
+
+            }
+        });
         tituloAlbum = (TextView) findViewById(R.id.txtTituloAlbumPhoto);
         progressBarPhoto = (ProgressBar) findViewById(R.id.progressBarPhoto);
         progressBarPhoto.setVisibility(View.VISIBLE);
@@ -59,7 +71,7 @@ public class PhotoActivity extends AppCompatActivity {
 
 
         //Mostrar valores a la pantalla
-        tituloAlbum.setText(DAlbumiD+" "+ DTituloAlbum);
+        tituloAlbum.setText(DTituloAlbum);
 
 
 
@@ -181,4 +193,5 @@ public class PhotoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
 
     }
+
 }

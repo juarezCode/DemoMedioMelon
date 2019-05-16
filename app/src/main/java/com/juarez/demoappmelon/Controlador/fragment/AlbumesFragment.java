@@ -37,7 +37,6 @@ public class AlbumesFragment extends Fragment {
     private ProgressBar progressBarAlbum;
     private View view;
 
-
     public AlbumesFragment() {
         // Required empty public constructor
     }
@@ -81,6 +80,7 @@ public class AlbumesFragment extends Fragment {
 
     //metodo para traer los datos de la web
     private void loadAlbumFromWeb() {
+
 
         //Hacemos uso de Volley para consumir el End-point
         myDataSet = new ArrayList<Album>();

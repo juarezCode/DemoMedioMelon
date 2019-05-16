@@ -73,6 +73,7 @@ public class UsersFragment extends Fragment {
     }
     //metodo para actualizar el Layout
     private void refreshDataSet() {
+
         progressBar.setVisibility(view.GONE);
         if(recyclerUsers == null){
             return;
